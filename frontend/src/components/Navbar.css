@@ -1,0 +1,102 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.name {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0096c8;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 10px rgba(0, 150, 200, 0.5);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.name:hover {
+  color: #00c4e8;
+  text-shadow: 0 0 20px rgba(0, 150, 200, 0.8);
+  transform: scale(1.05);
+}
+
+.hamburger {
+  font-size: 2rem;
+  background: none;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.navlinks {
+  display: flex;
+  gap: 3rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navlinks li {
+  position: relative;
+}
+
+.navlinks li a {
+  font-size: 1.1rem;
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navlinks li a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #0ff;
+  transition: width 0.3s ease;
+}
+
+.navlinks li a:hover {
+  color: #0ff;
+}
+
+.navlinks li a:hover::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  .navlinks {
+    flex-direction: column;
+    gap: 2rem;
+    position: absolute;
+    top: 10vh;
+    right: 0;
+    background-color: #111;
+    width: 100%;
+    text-align: center;
+    display: none;
+    padding: 2rem 0;
+    z-index: 100;
+  }
+
+  .navlinks.active {
+    display: flex;
+  }
+
+  .name {
+    color: #FFA500;
+    text-shadow: 0 0 10px #FFA500;
+    font-size: 1.5rem;
+  }
+}

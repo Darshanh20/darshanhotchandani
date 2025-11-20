@@ -1,0 +1,4 @@
+/* Layout wrapper for consistent spacing */
+main {
+  min-height: calc(100vh - 20vh);
+}

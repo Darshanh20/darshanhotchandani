@@ -1,0 +1,135 @@
+.journey {
+  text-align: center;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+}
+
+.journey em {
+  font-style: italic;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+  font-size: 1rem;
+}
+
+.journey-box {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 50px;
+  gap: 20px;
+}
+
+.timeline-line {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  z-index: 1;
+  top: 100px;
+}
+
+.journey-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.journey-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  flex: 1;
+}
+
+.journey-item::before {
+  content: "";
+  height: 100px;
+  width: 2px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.journey-item img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid white;
+  margin-top: 120px;
+  background-color: #111;
+  position: relative;
+  z-index: 3;
+}
+
+.journey-content {
+  margin-top: 20px;
+  max-width: 280px;
+  text-align: center;
+}
+
+.journey-content h3 {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+  color: white;
+}
+
+.journey-content .period {
+  color: #0ff;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.journey-content .description {
+  font-size: 0.9rem;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .timeline-line {
+    display: none;
+  }
+
+  .journey-items {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .journey-item {
+    width: 100%;
+  }
+
+  .journey-item::before {
+    display: none;
+  }
+
+  .journey-item img {
+    margin-top: 0;
+  }
+
+  .journey-content {
+    max-width: 100%;
+  }
+
+  .journey-box {
+    width: 95%;
+  }
+}
