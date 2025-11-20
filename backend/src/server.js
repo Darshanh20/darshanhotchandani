@@ -8,8 +8,8 @@ const config = require('./config/config')
 const app = express()
 
 // Middleware
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json({ limit: '10mb' }))
+app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }))
 app.use(corsMiddleware)
 
 // Routes
@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
     success: true,
     message: 'Darshan Portfolio Backend API',
     version: '1.0.0',
+    environment: config.nodeEnv,
     endpoints: {
       health: 'GET /api/health',
       contact: 'POST /api/contact'
@@ -28,23 +29,34 @@ app.get('/', (req, res) => {
   })
 })
 
+app.get('/api/health', (req, res) => {
+  res.json({
+    success: true,
+    message: 'API is healthy',
+    timestamp: new Date().toISOString()
+  })
+})
+
 // 404 handler
 app.use((req, res) => {
   res.status(404).json({
     success: false,
-    message: 'Endpoint not found'
+    message: 'Endpoint not found',
+    path: req.path
   })
 })
 
 // Error handler
 app.use(errorHandler)
 
-// Start server
-const PORT = config.port
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`)
-  console.log(`Environment: ${config.nodeEnv}`)
-  console.log(`Frontend URL: ${config.frontendUrl}`)
-})
+// For Vercel deployment
+if (require.main === module) {
+  const PORT = config.port
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
+    console.log(`Environment: ${config.nodeEnv}`)
+    console.log(`Frontend URL: ${config.frontendUrl}`)
+  })
+}
 
 module.exports = app

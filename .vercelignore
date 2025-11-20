@@ -1,0 +1,15 @@
+.git
+.gitignore
+.env
+.env.local
+.env.*.local
+node_modules
+npm-debug.log
+yarn-error.log
+.DS_Store
+.next
+.vercel
+backend/node_modules
+frontend/node_modules
+frontend/dist
+.git/objects
