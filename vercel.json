@@ -2,30 +2,22 @@
   "version": 2,
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "env": {
-    "VITE_API_URL": "@vite_api_url",
-    "REACT_APP_API_URL": "@react_app_api_url"
+    "VITE_API_URL": "@vite_api_url"
   },
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "https://darshan-portfolio-api.vercel.app/api/:path*"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
     }
   ],
   "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, s-maxage=3600"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "ALLOW-ALL"
-        }
-      ]
-    },
     {
       "source": "/index.html",
       "headers": [
@@ -43,13 +35,6 @@
           "value": "public, max-age=31536000, immutable"
         }
       ]
-    }
-  ],
-  "redirects": [
-    {
-      "source": "/resume",
-      "destination": "/src/assets/resume.pdf",
-      "permanent": false
     }
   ]
 }
